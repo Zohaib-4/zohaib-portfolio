@@ -1,0 +1,28 @@
+[
+  {
+    "company": "Techleadz",
+    "role": "Software Engineer",
+    "location": "Lahore, Punjab",
+    "start": "June 2025",
+    "end": null,
+    "highlights": [
+      "Architected and deployed production-grade full-stack systems on AWS and GCP for enterprise clients, improving internal workflows and driving operational efficiency across multiple business units.",
+      "Owned end-to-end software delivery: REST API design, data pipelines, cloud infrastructure, CI/CD automation with GitHub Actions, observability setup, and enterprise SAML 2.0 SSO integration.",
+      "Drove milestone delivery through direct collaboration with product, engineering, and client stakeholders, translating business requirements and user feedback into reliable, scalable software shipped to production.",
+      "Led UX and reliability improvements informed by end-user feedback, increasing trust in platform data and reducing manual verification effort for operations teams.",
+      "Provided rotational on-call ownership for production systems, triaging incidents and resolving urgent client requests to maintain platform availability."
+    ]
+  },
+  {
+    "company": "Programmers Force",
+    "role": "Data Science Intern",
+    "location": "Lahore, Punjab",
+    "start": "Aug 2024",
+    "end": "Oct 2024",
+    "highlights": [
+      "Engineered an automated ETL pipeline in Python that scraped and processed 5K+ records from 100+ static and dynamic websites, overcoming anti-bot mechanisms using Selenium and BeautifulSoup.",
+      "Built an API-driven data enrichment workflow integrating external NLP services, reducing manual annotation effort and improving downstream data quality for a production pipeline.",
+      "Developed a semantic search and question-answering system over the full scraped dataset using LLM-based retrieval, enabling intelligent querying at scale."
+    ]
+  }
+]

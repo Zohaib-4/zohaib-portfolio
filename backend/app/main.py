@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routers import health
+from app.routers import certifications, experience, health, profile, projects, skills
 
 app = FastAPI(title="Zohaib Portfolio API")
 
@@ -15,3 +15,8 @@ app.add_middleware(
 )
 
 app.include_router(health.router)
+app.include_router(profile.router)
+app.include_router(experience.router)
+app.include_router(projects.router)
+app.include_router(skills.router)
+app.include_router(certifications.router)

@@ -1,0 +1,64 @@
+[
+  {
+    "category": "Languages",
+    "items": [
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "SQL",
+      "Java",
+      "C++",
+      "Solidity"
+    ]
+  },
+  {
+    "category": "Frameworks & Libraries",
+    "items": [
+      "FastAPI",
+      "Django",
+      "Django REST Framework",
+      "React",
+      "RESTful APIs",
+      "Apache Kafka",
+      "BeautifulSoup",
+      "Selenium"
+    ]
+  },
+  {
+    "category": "Cloud & DevOps",
+    "items": [
+      "AWS (ECS Fargate, EC2, VPC, Bedrock)",
+      "GCP",
+      "Docker",
+      "Kubernetes",
+      "ArgoCD",
+      "CI/CD Pipelines",
+      "GitHub Actions",
+      "Jenkins"
+    ]
+  },
+  {
+    "category": "Databases",
+    "items": ["PostgreSQL", "DynamoDB", "Redis", "BigQuery", "OpenSearch"]
+  },
+  {
+    "category": "AI & ML",
+    "items": [
+      "PyTorch",
+      "TensorFlow",
+      "Scikit-learn",
+      "Hugging Face",
+      "RAG",
+      "Embeddings",
+      "Prompt Engineering"
+    ]
+  },
+  {
+    "category": "Observability",
+    "items": ["Grafana", "Prometheus", "Sentry", "Loki"]
+  },
+  {
+    "category": "Productivity",
+    "items": ["Jira", "Notion", "Agile/Scrum"]
+  }
+]
