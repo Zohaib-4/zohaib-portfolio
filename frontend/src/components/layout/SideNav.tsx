@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { Mail, Menu, Phone, X } from 'lucide-react'
 import type { Profile } from '../../types'
 import { API_BASE_URL } from '../../services/apiClient'
 import { useScrollSpy } from '../../hooks/useScrollSpy'
 import { cn } from '../../lib/cn'
+import { SOCIAL_ICONS } from '../../lib/socialIcons'
 import { Button } from '../ui/Button'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -41,7 +43,11 @@ export function SideNav({ profile }: SideNavProps) {
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            <span aria-hidden="true">{menuOpen ? '✕' : '☰'}</span>
+            {menuOpen ? (
+              <X className="h-[18px] w-[18px]" aria-hidden="true" />
+            ) : (
+              <Menu className="h-[18px] w-[18px]" aria-hidden="true" />
+            )}
           </button>
         </div>
       </header>
@@ -116,21 +122,38 @@ export function SideNav({ profile }: SideNavProps) {
           <Button href={`${API_BASE_URL}/api/resume`} variant="secondary">
             Résumé
           </Button>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-muted">
-            <a href={`mailto:${profile.email}`} className="hover:text-text">
-              Email
+          <div className="flex flex-col gap-2 text-sm text-text-muted">
+            <a
+              href={`mailto:${profile.email}`}
+              className="flex items-center gap-2.5 hover:text-text"
+            >
+              <Mail className="h-4 w-4 flex-none" aria-hidden="true" />
+              <span className="truncate">{profile.email}</span>
             </a>
-            {profile.socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.url}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-text"
-              >
-                {social.label}
-              </a>
-            ))}
+            <a
+              href={`tel:${profile.phone.replace(/\s+/g, '')}`}
+              className="flex items-center gap-2.5 hover:text-text"
+            >
+              <Phone className="h-4 w-4 flex-none" aria-hidden="true" />
+              {profile.phone}
+            </a>
+            <div className="mt-1 flex items-center gap-4">
+              {profile.socials.map((social) => {
+                const Icon = SOCIAL_ICONS[social.icon]
+                return (
+                  <a
+                    key={social.label}
+                    href={social.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={social.label}
+                    className="text-text-muted hover:text-text"
+                  >
+                    {Icon && <Icon className="h-5 w-5" aria-hidden="true" />}
+                  </a>
+                )
+              })}
+            </div>
           </div>
           <ThemeToggle />
         </div>

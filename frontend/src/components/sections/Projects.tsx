@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 import type { Project } from '../../types'
+import { cn } from '../../lib/cn'
 import { Section } from '../ui/Section'
 import { Card } from '../ui/Card'
 import { Tag } from '../ui/Tag'
@@ -44,9 +46,16 @@ export function Projects({ projects }: ProjectsProps) {
                 type="button"
                 onClick={() => setExpandedSlug(expanded ? null : project.slug)}
                 aria-expanded={expanded}
-                className="mt-4 self-start text-sm font-medium text-accent hover:text-accent-hover"
+                className="mt-4 inline-flex items-center gap-1 self-start text-sm font-medium text-accent hover:text-accent-hover"
               >
                 {expanded ? 'Show less' : 'Show details'}
+                <ChevronDown
+                  className={cn(
+                    'h-4 w-4 transition-transform',
+                    expanded && 'rotate-180',
+                  )}
+                  aria-hidden="true"
+                />
               </button>
 
               {expanded && (
