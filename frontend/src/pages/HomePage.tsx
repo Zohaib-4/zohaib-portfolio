@@ -1,4 +1,4 @@
-import { Navbar } from '../components/layout/Navbar'
+import { SideNav } from '../components/layout/SideNav'
 import { Footer } from '../components/layout/Footer'
 import { Hero } from '../components/sections/Hero'
 import { About } from '../components/sections/About'
@@ -23,16 +23,18 @@ export function HomePage() {
 
   return (
     <>
-      <Navbar />
-      <main>
-        <Hero profile={profile} />
-        <About profile={profile} />
-        <Experience experience={experience} />
-        <Projects projects={projects} />
-        <Skills skills={skills} />
-        <Contact profile={profile} />
-      </main>
-      <Footer profile={profile} />
+      <SideNav profile={profile} />
+      <div className="lg:pl-64">
+        <main>
+          <Hero profile={profile} />
+          <About profile={profile} />
+          <Experience experience={experience} />
+          <Projects projects={projects} />
+          <Skills skills={skills} />
+          <Contact profile={profile} />
+        </main>
+        <Footer profile={profile} />
+      </div>
     </>
   )
 }
