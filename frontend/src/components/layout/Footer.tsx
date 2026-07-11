@@ -1,4 +1,6 @@
+import { ArrowUp, Mail } from 'lucide-react'
 import type { Profile } from '../../types'
+import { SOCIAL_ICONS } from '../../lib/socialIcons'
 import { Container } from './Container'
 
 const YEAR = new Date().getFullYear()
@@ -15,22 +17,34 @@ export function Footer({ profile }: FooterProps) {
           © {YEAR} {profile.name} — built with React + FastAPI
         </p>
         <div className="flex items-center gap-4">
-          {profile.socials.map((social) => (
-            <a
-              key={social.label}
-              href={social.url}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-text"
-            >
-              {social.label}
-            </a>
-          ))}
-          <a href={`mailto:${profile.email}`} className="hover:text-text">
+          {profile.socials.map((social) => {
+            const Icon = SOCIAL_ICONS[social.icon]
+            return (
+              <a
+                key={social.label}
+                href={social.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-text"
+              >
+                {Icon && <Icon className="h-4 w-4" aria-hidden="true" />}
+                {social.label}
+              </a>
+            )
+          })}
+          <a
+            href={`mailto:${profile.email}`}
+            className="inline-flex items-center gap-1.5 hover:text-text"
+          >
+            <Mail className="h-4 w-4" aria-hidden="true" />
             Email
           </a>
-          <a href="#hero" className="hover:text-text">
-            Back to top ↑
+          <a
+            href="#hero"
+            className="inline-flex items-center gap-1.5 hover:text-text"
+          >
+            <ArrowUp className="h-4 w-4" aria-hidden="true" />
+            Back to top
           </a>
         </div>
       </Container>

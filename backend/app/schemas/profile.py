@@ -21,5 +21,6 @@ class Profile(BaseModel):
     summary: str
     location: str
     email: EmailStr
+    phone: str
     socials: list[SocialLink]
     education: Education

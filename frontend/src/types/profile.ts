@@ -18,6 +18,7 @@ export interface Profile {
   summary: string
   location: string
   email: string
+  phone: string
   socials: SocialLink[]
   education: Education
 }

@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from 'react'
+import { Mail } from 'lucide-react'
 import type { Profile } from '../../types'
+import { SOCIAL_ICONS } from '../../lib/socialIcons'
 import { Section } from '../ui/Section'
 import { Button } from '../ui/Button'
 
@@ -77,20 +79,28 @@ export function Contact({ profile }: ContactProps) {
 
         <div className="space-y-2 text-sm text-text-muted">
           <p>Prefer email or socials?</p>
-          <a href={`mailto:${profile.email}`} className="block hover:text-text">
+          <a
+            href={`mailto:${profile.email}`}
+            className="flex items-center gap-1.5 hover:text-text"
+          >
+            <Mail className="h-4 w-4" aria-hidden="true" />
             {profile.email}
           </a>
-          {profile.socials.map((social) => (
-            <a
-              key={social.label}
-              href={social.url}
-              target="_blank"
-              rel="noreferrer"
-              className="block hover:text-text"
-            >
-              {social.label}
-            </a>
-          ))}
+          {profile.socials.map((social) => {
+            const Icon = SOCIAL_ICONS[social.icon]
+            return (
+              <a
+                key={social.label}
+                href={social.url}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 hover:text-text"
+              >
+                {Icon && <Icon className="h-4 w-4" aria-hidden="true" />}
+                {social.label}
+              </a>
+            )
+          })}
         </div>
       </div>
     </Section>
