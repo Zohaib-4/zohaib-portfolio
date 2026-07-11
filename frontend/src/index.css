@@ -39,15 +39,15 @@
 }
 
 :root {
-  --bg: #fafbfc;
-  --surface: #ffffff;
-  --surface-2: #f1f4f8;
-  --border: #e3e8ef;
-  --text: #0b0f14;
-  --text-muted: #55637a;
-  --accent: #4f46e5;
-  --accent-hover: #4338ca;
-  --accent-2: #0891b2;
+  --bg: oklch(96% 0.014 80);
+  --surface: oklch(98.5% 0.008 80);
+  --surface-2: oklch(93.5% 0.025 55);
+  --border: oklch(87% 0.015 65);
+  --text: oklch(22% 0.02 50);
+  --text-muted: oklch(46% 0.02 50);
+  --accent: oklch(56% 0.135 40);
+  --accent-hover: oklch(48% 0.135 40);
+  --accent-2: oklch(64% 0.15 70);
   --success: #059669;
   --danger: #dc2626;
 }
