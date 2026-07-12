@@ -3,55 +3,59 @@ import { ChevronDown } from 'lucide-react'
 import type { Project } from '../../types'
 import { cn } from '../../lib/cn'
 import { Section } from '../ui/Section'
-import { Card } from '../ui/Card'
-import { Tag } from '../ui/Tag'
 
 interface ProjectsProps {
   projects: Project[]
 }
 
 export function Projects({ projects }: ProjectsProps) {
-  const [expandedSlug, setExpandedSlug] = useState<string | null>(null)
+  const [expandedSlugs, setExpandedSlugs] = useState<Set<string>>(
+    () => new Set(projects[0] ? [projects[0].slug] : []),
+  )
+
+  function toggle(slug: string) {
+    setExpandedSlugs((current) => {
+      const next = new Set(current)
+      if (next.has(slug)) {
+        next.delete(slug)
+      } else {
+        next.add(slug)
+      }
+      return next
+    })
+  }
 
   return (
     <Section id="projects" title="Projects">
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <p className="-mt-6 mb-8 text-sm text-text-muted">
+        Click a project to expand full details.
+      </p>
+
+      <div className="flex flex-col gap-4">
         {projects.map((project) => {
-          const expanded = expandedSlug === project.slug
+          const expanded = expandedSlugs.has(project.slug)
           return (
-            <Card key={project.slug} className="flex flex-col">
-              <h3 className="text-lg font-semibold">{project.name}</h3>
-              <p className="text-sm text-text-muted">{project.subtitle}</p>
-
-              {project.metrics.length > 0 && (
-                <ul className="mt-3 flex flex-wrap gap-2">
-                  {project.metrics.map((metric) => (
-                    <li
-                      key={metric}
-                      className="rounded-chip bg-surface-2 px-2 py-1 font-mono text-xs text-accent"
-                    >
-                      {metric}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              <div className="mt-3 flex flex-wrap gap-2">
-                {project.stack.map((tech) => (
-                  <Tag key={tech}>{tech}</Tag>
-                ))}
-              </div>
-
+            <div
+              key={project.slug}
+              className="overflow-hidden rounded-card border border-border bg-surface"
+            >
               <button
                 type="button"
-                onClick={() => setExpandedSlug(expanded ? null : project.slug)}
+                onClick={() => toggle(project.slug)}
                 aria-expanded={expanded}
-                className="mt-4 inline-flex items-center gap-1 self-start text-sm font-medium text-accent hover:text-accent-hover"
+                className="flex w-full items-center justify-between gap-5 px-6 py-5 text-left hover:bg-surface-2"
               >
-                {expanded ? 'Show less' : 'Show details'}
+                <div>
+                  <div className="text-base font-bold">
+                    {project.name} · {project.subtitle}
+                  </div>
+                  <div className="mt-1 font-mono text-xs text-text-muted">
+                    {project.stack.join(' · ')}
+                  </div>
+                </div>
                 <ChevronDown
                   className={cn(
-                    'h-4 w-4 transition-transform',
+                    'h-[18px] w-[18px] flex-none text-text-muted transition-transform',
                     expanded && 'rotate-180',
                   )}
                   aria-hidden="true"
@@ -59,13 +63,13 @@ export function Projects({ projects }: ProjectsProps) {
               </button>
 
               {expanded && (
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-text-muted">
+                <ul className="list-disc space-y-2.5 border-t border-border px-6 py-5 pl-9 text-sm text-text-muted">
                   {project.highlights.map((highlight) => (
                     <li key={highlight}>{highlight}</li>
                   ))}
                 </ul>
               )}
-            </Card>
+            </div>
           )
         })}
       </div>

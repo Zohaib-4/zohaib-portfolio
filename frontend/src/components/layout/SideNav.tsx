@@ -25,7 +25,7 @@ interface SideNavProps {
 export function SideNav({ profile }: SideNavProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const activeId = useScrollSpy(SECTION_IDS)
-  const role = profile.headline.split(' — ')[0]
+  const role = profile.headline.split(' · ')[0]
 
   return (
     <>
