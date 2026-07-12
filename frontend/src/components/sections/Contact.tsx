@@ -26,7 +26,7 @@ export function Contact({ profile }: ContactProps) {
       <div className="grid gap-10 lg:grid-cols-2">
         {submitted ? (
           <p role="status" className="text-success">
-            Thanks — I&rsquo;ll get back to you soon.
+            Thanks! I&rsquo;ll get back to you soon.
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>

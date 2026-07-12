@@ -40,7 +40,7 @@
       "AWS"
     ],
     "highlights": [
-      "Engineered a production platform serving 1,000+ users: FastAPI microservices, Amazon OpenSearch for full-text and vector search, DynamoDB persistence, and Redis caching — achieving sub-second response times.",
+      "Engineered a production platform serving 1,000+ users: FastAPI microservices, Amazon OpenSearch for full-text and vector search, DynamoDB persistence, and Redis caching, achieving sub-second response times.",
       "Designed a scalable content ingestion and synchronization workflow with incremental change detection, reducing re-indexing effort by 80% while keeping the knowledge base continuously up to date.",
       "Built an end-to-end observability pipeline using Kafka, Snowflake, and Grafana for real-time monitoring of system health, usage patterns, and API performance.",
       "Implemented GitHub Actions CI/CD pipelines and led migration from EC2 to ECS Fargate, improving system scalability and reducing operational overhead.",

@@ -14,7 +14,7 @@ export function Footer({ profile }: FooterProps) {
     <footer className="border-t border-border py-8">
       <Container className="flex flex-col items-center gap-6 text-sm text-text-muted md:flex-row md:justify-between">
         <p>
-          © {YEAR} {profile.name} — built with React + FastAPI
+          © {YEAR} {profile.name} · Built with React + FastAPI
         </p>
         <div className="flex items-center gap-4">
           {profile.socials.map((social) => {
