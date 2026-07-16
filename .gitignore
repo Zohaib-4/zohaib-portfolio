@@ -34,7 +34,7 @@ logs/
 *.log
 
 # --- Planning / local-only docs ---
-EXECUTION_PLAN.md
+docs/
 
 # --- Local scratch ---
 temp/

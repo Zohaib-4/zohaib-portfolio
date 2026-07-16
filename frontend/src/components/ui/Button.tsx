@@ -6,6 +6,7 @@ type Variant = 'primary' | 'secondary'
 interface ButtonProps {
   variant?: Variant
   href?: string
+  download?: boolean | string
   type?: 'button' | 'submit'
   disabled?: boolean
   onClick?: MouseEventHandler
@@ -23,6 +24,7 @@ const variantStyles: Record<Variant, string> = {
 export function Button({
   variant = 'primary',
   href,
+  download,
   type = 'button',
   disabled,
   onClick,
@@ -41,6 +43,7 @@ export function Button({
     return (
       <a
         href={href}
+        download={download}
         className={classes}
         onClick={onClick}
         target={target}

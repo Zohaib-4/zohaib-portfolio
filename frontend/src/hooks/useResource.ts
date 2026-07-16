@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { apiGet } from '../services/apiClient'
+import { apiGet, isApiConfigured } from '../services/apiClient'
 
 type ResourceSource = 'loading' | 'live' | 'fallback'
 
@@ -11,10 +11,12 @@ interface ResourceState<T> {
 export function useResource<T>(path: string, fallback: T): ResourceState<T> {
   const [state, setState] = useState<ResourceState<T>>({
     data: fallback,
-    source: 'loading',
+    source: isApiConfigured ? 'loading' : 'fallback',
   })
 
   useEffect(() => {
+    if (!isApiConfigured) return
+
     let cancelled = false
 
     apiGet<T>(path)

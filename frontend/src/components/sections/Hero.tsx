@@ -1,5 +1,4 @@
 import type { Profile } from '../../types'
-import { API_BASE_URL } from '../../services/apiClient'
 import { Container } from '../layout/Container'
 import { Button } from '../ui/Button'
 
@@ -26,7 +25,9 @@ export function Hero({ profile }: HeroProps) {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
-            <Button href={`${API_BASE_URL}/api/resume`}>Download résumé</Button>
+            <Button href="/resume.pdf" download>
+              Download résumé
+            </Button>
             <Button href="#contact" variant="secondary">
               Get in touch
             </Button>

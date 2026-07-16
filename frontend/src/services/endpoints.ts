@@ -4,4 +4,5 @@ export const endpoints = {
   projects: '/api/projects',
   skills: '/api/skills',
   certifications: '/api/certifications',
+  contact: '/api/contact',
 } as const

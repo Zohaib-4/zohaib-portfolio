@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Mail, Menu, Phone, X } from 'lucide-react'
 import type { Profile } from '../../types'
-import { API_BASE_URL } from '../../services/apiClient'
 import { useScrollSpy } from '../../hooks/useScrollSpy'
 import { cn } from '../../lib/cn'
 import { SOCIAL_ICONS } from '../../lib/socialIcons'
@@ -70,7 +69,8 @@ export function SideNav({ profile }: SideNavProps) {
               </a>
             ))}
             <Button
-              href={`${API_BASE_URL}/api/resume`}
+              href="/resume.pdf"
+              download
               variant="secondary"
               className="mt-2"
             >
@@ -119,7 +119,7 @@ export function SideNav({ profile }: SideNavProps) {
         </nav>
 
         <div className="mt-auto flex flex-col gap-4">
-          <Button href={`${API_BASE_URL}/api/resume`} variant="secondary">
+          <Button href="/resume.pdf" download variant="secondary">
             Résumé
           </Button>
           <div className="flex flex-col gap-2 text-sm text-text-muted">
