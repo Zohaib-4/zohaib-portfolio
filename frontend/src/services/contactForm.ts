@@ -20,6 +20,7 @@ export async function submitContactForm(
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({
       access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+      subject: `Portfolio contact: ${payload.name}`,
       ...payload,
     }),
   })

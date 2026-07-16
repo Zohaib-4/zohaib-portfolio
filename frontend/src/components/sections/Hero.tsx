@@ -9,7 +9,7 @@ interface HeroProps {
 export function Hero({ profile }: HeroProps) {
   return (
     <section
-      id="hero"
+      id="zohaib"
       className="grid min-h-[85vh] grid-cols-1 content-center border-b border-border py-16"
     >
       <Container>
