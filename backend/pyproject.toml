@@ -6,8 +6,11 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.139.0",
+    "httpx>=0.28.1",
     "pydantic-settings>=2.14.2",
     "pydantic[email]>=2.13.4",
+    "slowapi>=0.1.10",
+    "sqlmodel>=0.0.39",
     "uvicorn[standard]>=0.50.2",
 ]
 
@@ -26,6 +29,7 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["B008"]
 
 [tool.ruff.format]
 quote-style = "double"
