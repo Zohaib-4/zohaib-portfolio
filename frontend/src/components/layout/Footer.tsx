@@ -40,7 +40,7 @@ export function Footer({ profile }: FooterProps) {
             Email
           </a>
           <a
-            href="#hero"
+            href="#zohaib"
             className="inline-flex items-center gap-1.5 hover:text-text"
           >
             <ArrowUp className="h-4 w-4" aria-hidden="true" />

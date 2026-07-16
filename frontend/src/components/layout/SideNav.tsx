@@ -29,7 +29,7 @@ export function SideNav({ profile }: SideNavProps) {
   return (
     <>
       <header className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-border bg-bg/80 px-4 backdrop-blur lg:hidden">
-        <a href="#hero" className="font-heading text-lg font-bold">
+        <a href="#zohaib" className="font-heading text-lg font-bold">
           MZ
         </a>
         <div className="flex items-center gap-2">
@@ -81,7 +81,7 @@ export function SideNav({ profile }: SideNavProps) {
       )}
 
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col gap-8 overflow-y-auto border-r border-border bg-bg px-7 py-10 lg:flex">
-        <a href="#hero" className="block">
+        <a href="#zohaib" className="block">
           <div className="font-heading text-lg font-bold leading-tight text-text">
             {profile.name}
           </div>
