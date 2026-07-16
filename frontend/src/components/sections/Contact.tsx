@@ -4,27 +4,52 @@ import type { Profile } from '../../types'
 import { SOCIAL_ICONS } from '../../lib/socialIcons'
 import { Section } from '../ui/Section'
 import { Button } from '../ui/Button'
+import { submitContactForm } from '../../services/contactForm'
 
 interface ContactProps {
   profile: Profile
 }
 
+type Status = 'idle' | 'submitting' | 'success' | 'error'
+
 const inputClasses =
-  'w-full rounded-chip border border-border bg-surface px-3 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent'
+  'w-full rounded-chip border border-border bg-surface px-3 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50'
 
 export function Contact({ profile }: ContactProps) {
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<Status>('idle')
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    // Backend wiring (POST /api/contact) lands in Phase 3.
-    setSubmitted(true)
+    setStatus('submitting')
+    setErrorMessage(null)
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      await submitContactForm({
+        name: String(formData.get('name') ?? ''),
+        email: String(formData.get('email') ?? ''),
+        message: String(formData.get('message') ?? ''),
+        botcheck: String(formData.get('botcheck') ?? ''),
+      })
+      setStatus('success')
+      form.reset()
+    } catch (error) {
+      setStatus('error')
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong. Please try again.',
+      )
+    }
   }
 
   return (
     <Section id="contact" title="Contact">
       <div className="grid gap-10 lg:grid-cols-2">
-        {submitted ? (
+        {status === 'success' ? (
           <p role="status" className="text-success">
             Thanks! I&rsquo;ll get back to you soon.
           </p>
@@ -41,6 +66,7 @@ export function Contact({ profile }: ContactProps) {
                 required
                 minLength={2}
                 maxLength={100}
+                disabled={status === 'submitting'}
                 className={inputClasses}
               />
             </div>
@@ -53,6 +79,7 @@ export function Contact({ profile }: ContactProps) {
                 name="email"
                 type="email"
                 required
+                disabled={status === 'submitting'}
                 className={inputClasses}
               />
             </div>
@@ -70,10 +97,32 @@ export function Contact({ profile }: ContactProps) {
                 minLength={10}
                 maxLength={5000}
                 rows={5}
+                disabled={status === 'submitting'}
                 className={inputClasses}
               />
             </div>
-            <Button type="submit">Send message</Button>
+            <div className="hidden" aria-hidden="true">
+              <label htmlFor="botcheck">Leave this field empty</label>
+              <input
+                id="botcheck"
+                name="botcheck"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+            {status === 'error' && (
+              <p
+                role="alert"
+                aria-live="assertive"
+                className="text-sm text-danger"
+              >
+                {errorMessage}
+              </p>
+            )}
+            <Button type="submit" disabled={status === 'submitting'}>
+              {status === 'submitting' ? 'Sending…' : 'Send message'}
+            </Button>
           </form>
         )}
 

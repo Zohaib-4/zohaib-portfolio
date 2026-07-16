@@ -1,6 +1,6 @@
 # Zohaib Portfolio
 
-Personal portfolio — React (Vite) frontend + FastAPI backend. See [`EXECUTION_PLAN.md`](./EXECUTION_PLAN.md) for the full architecture and phased build plan; content is sourced from [`resume.md`](./resume.md).
+Personal portfolio — React (Vite) frontend + FastAPI backend. See [`docs/EXECUTION_PLAN.md`](./docs/EXECUTION_PLAN.md) for the full architecture and phased build plan; content is sourced from [`resume.md`](./resume.md).
 
 ## Prerequisites
 
