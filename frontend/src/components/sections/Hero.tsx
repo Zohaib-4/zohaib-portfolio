@@ -67,7 +67,7 @@ export function Hero() {
                   href={PROFILE.resume}
                   className="border-b border-hairline text-dim no-underline pb-0.5 hover:border-accent hover:text-accent"
                 >
-                  Résumé
+                  Resume
                 </a>
               </nav>
               <span className="text-[13px] text-dim">

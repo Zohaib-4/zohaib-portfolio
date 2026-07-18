@@ -157,7 +157,7 @@ export function Contact() {
               href={PROFILE.resume}
               className="border-b border-hairline pb-0.5 text-dim no-underline hover:border-accent hover:text-accent"
             >
-              Résumé
+              Resume
             </a>
           </nav>
           <span className="text-[13px] text-dim">I reply within 24 hours.</span>
