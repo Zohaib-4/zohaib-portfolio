@@ -1,21 +1,15 @@
 import { useState, type FormEvent } from 'react'
-import { Mail } from 'lucide-react'
-import type { Profile } from '../../types'
-import { SOCIAL_ICONS } from '../../lib/socialIcons'
+import { PROFILE } from '../../content'
+import { submitContactForm } from '../../services/contactForm'
 import { Section } from '../ui/Section'
 import { Button } from '../ui/Button'
-import { submitContactForm } from '../../services/contactForm'
-
-interface ContactProps {
-  profile: Profile
-}
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
 const inputClasses =
-  'w-full rounded-chip border border-border bg-surface px-3 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50'
+  'w-full rounded-[10px] border border-hairline bg-paper px-4 py-3 text-[15px] text-ink placeholder:text-dim/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50'
 
-export function Contact({ profile }: ContactProps) {
+export function Contact() {
   const [status, setStatus] = useState<Status>('idle')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
@@ -47,16 +41,25 @@ export function Contact({ profile }: ContactProps) {
   }
 
   return (
-    <Section id="contact" title="Contact">
-      <div className="grid gap-10 lg:grid-cols-2">
+    <Section
+      id="contact"
+      kicker="Contact"
+      title="Let's make your product quietly reliable."
+    >
+      <p className="r max-w-[58ch] text-[15.5px] leading-[1.75] text-dim">
+        If you're hiring for a remote backend or full-stack role, or just want a
+        second pair of eyes on a system, my inbox is open.
+      </p>
+
+      <div className="r mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2">
         {status === 'success' ? (
-          <p role="status" className="text-success">
-            Thanks! I&rsquo;ll get back to you soon.
+          <p role="status" className="font-heading text-lg italic text-accent">
+            Thanks! I'll get back to you soon.
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             <div>
-              <label htmlFor="name" className="mb-1 block text-sm font-medium">
+              <label htmlFor="name" className="mb-1.5 block text-sm text-dim">
                 Name
               </label>
               <input
@@ -71,7 +74,7 @@ export function Contact({ profile }: ContactProps) {
               />
             </div>
             <div>
-              <label htmlFor="email" className="mb-1 block text-sm font-medium">
+              <label htmlFor="email" className="mb-1.5 block text-sm text-dim">
                 Email
               </label>
               <input
@@ -86,7 +89,7 @@ export function Contact({ profile }: ContactProps) {
             <div>
               <label
                 htmlFor="message"
-                className="mb-1 block text-sm font-medium"
+                className="mb-1.5 block text-sm text-dim"
               >
                 Message
               </label>
@@ -115,7 +118,7 @@ export function Contact({ profile }: ContactProps) {
               <p
                 role="alert"
                 aria-live="assertive"
-                className="text-sm text-danger"
+                className="text-sm text-[#dc2626]"
               >
                 {errorMessage}
               </p>
@@ -126,30 +129,38 @@ export function Contact({ profile }: ContactProps) {
           </form>
         )}
 
-        <div className="space-y-2 text-sm text-text-muted">
-          <p>Prefer email or socials?</p>
+        <div className="flex flex-col gap-5">
           <a
-            href={`mailto:${profile.email}`}
-            className="flex items-center gap-1.5 hover:text-text"
+            href={`mailto:${PROFILE.email}?subject=Hello%20Zohaib`}
+            className="text-[15px] font-semibold text-ink no-underline hover:text-accent"
           >
-            <Mail className="h-4 w-4" aria-hidden="true" />
-            {profile.email}
+            {PROFILE.email} →
           </a>
-          {profile.socials.map((social) => {
-            const Icon = SOCIAL_ICONS[social.icon]
-            return (
-              <a
-                key={social.label}
-                href={social.url}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1.5 hover:text-text"
-              >
-                {Icon && <Icon className="h-4 w-4" aria-hidden="true" />}
-                {social.label}
-              </a>
-            )
-          })}
+          <nav aria-label="Profiles" className="flex gap-6 text-sm">
+            <a
+              href={PROFILE.github}
+              target="_blank"
+              rel="noreferrer"
+              className="border-b border-hairline pb-0.5 text-dim no-underline hover:border-accent hover:text-accent"
+            >
+              GitHub
+            </a>
+            <a
+              href={PROFILE.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="border-b border-hairline pb-0.5 text-dim no-underline hover:border-accent hover:text-accent"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={PROFILE.resume}
+              className="border-b border-hairline pb-0.5 text-dim no-underline hover:border-accent hover:text-accent"
+            >
+              Résumé
+            </a>
+          </nav>
+          <span className="text-[13px] text-dim">I reply within 24 hours.</span>
         </div>
       </div>
     </Section>

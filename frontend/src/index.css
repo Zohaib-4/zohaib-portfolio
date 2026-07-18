@@ -1,82 +1,156 @@
 @import 'tailwindcss';
 
-@import '@fontsource/sora/600.css';
-@import '@fontsource/sora/700.css';
+@import '@fontsource/newsreader/400.css';
+@import '@fontsource/newsreader/500.css';
+@import '@fontsource/newsreader/400-italic.css';
+@import '@fontsource/newsreader/500-italic.css';
 @import '@fontsource/inter/400.css';
 @import '@fontsource/inter/500.css';
-@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/inter/600.css';
 
 @theme inline {
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-border: var(--border);
-  --color-text: var(--text);
-  --color-text-muted: var(--text-muted);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-dim: var(--dim);
   --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-accent-2: var(--accent-2);
-  --color-success: var(--success);
-  --color-danger: var(--danger);
+  --color-accent-soft: var(--accent-soft);
+  --color-hairline: var(--hairline);
 
-  --font-heading: 'Sora', system-ui, sans-serif;
+  --font-heading: 'Newsreader', Georgia, 'Times New Roman', serif;
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  --text-xs: 0.8rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.5rem;
-  --text-2xl: 1.953rem;
-  --text-3xl: 2.441rem;
-  --text-4xl: 3.052rem;
+  --radius-chip: 999px;
 
-  --radius-card: 12px;
-  --radius-chip: 8px;
-
-  --container-content: 1120px;
+  --container-content: 1060px;
 }
 
 :root {
-  --bg: oklch(96% 0.014 80);
-  --surface: oklch(98.5% 0.008 80);
-  --surface-2: oklch(93.5% 0.025 55);
-  --border: oklch(87% 0.015 65);
-  --text: oklch(22% 0.02 50);
-  --text-muted: oklch(46% 0.02 50);
-  --accent: oklch(56% 0.135 40);
-  --accent-hover: oklch(48% 0.135 40);
-  --accent-2: oklch(64% 0.15 70);
-  --success: #059669;
-  --danger: #dc2626;
-}
-
-:root[data-theme='dark'] {
-  --bg: #0b0f14;
-  --surface: #131a22;
-  --surface-2: #1a222c;
-  --border: #232e3a;
-  --text: #e6edf3;
-  --text-muted: #93a1b1;
-  --accent: #6366f1;
-  --accent-hover: #818cf8;
-  --accent-2: #22d3ee;
-  --success: #34d399;
-  --danger: #f87171;
+  --paper: #faf8f3;
+  --ink: #1a2620;
+  --dim: #5c6e63;
+  --accent: #0f8a4f;
+  --accent-soft: rgba(15, 138, 79, 0.16);
+  --hairline: rgba(26, 38, 32, 0.14);
 }
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
 h3 {
   font-family: var(--font-heading);
-  line-height: 1.15;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+/* ── marker-highlight sweep, used on the hero's emphasized word ── */
+.mark {
+  background-image: linear-gradient(var(--accent-soft), var(--accent-soft));
+  background-repeat: no-repeat;
+  background-position: 0 62%;
+  background-size: 0% 45%;
+  animation: sweep 0.9s ease 0.8s forwards;
+}
+
+@keyframes sweep {
+  to {
+    background-size: 100% 45%;
+  }
+}
+
+/* ── pulse dot, "open to remote roles" badge ── */
+.pulse {
+  animation: pulse 2.6s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(15, 138, 79, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(15, 138, 79, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(15, 138, 79, 0);
+  }
+}
+
+/* ── scroll reveal, applied to section content as it enters view ── */
+.r {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.r.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── portrait photo frame ── */
+.frame {
+  background: #fff;
+  padding: 12px;
+  border: 1px solid var(--hairline);
+  box-shadow: 0 16px 40px rgba(26, 38, 32, 0.13);
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.frame .ph {
+  display: none;
+  aspect-ratio: 4 / 5;
+  background: var(--accent-soft);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+}
+
+.frame .ph span {
+  font-family: var(--font-heading);
+  font-size: 3.4rem;
+  color: var(--accent);
+}
+
+.portrait.missing img {
+  display: none;
+}
+
+.portrait.missing .ph {
+  display: flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .r {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .mark {
+    animation: none;
+    background-size: 100% 45%;
+  }
+  .pulse {
+    animation: none;
+  }
 }

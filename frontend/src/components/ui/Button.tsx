@@ -17,8 +17,9 @@ interface ButtonProps {
 }
 
 const variantStyles: Record<Variant, string> = {
-  primary: 'bg-accent text-white hover:bg-accent-hover',
-  secondary: 'border border-border text-text hover:bg-surface-2',
+  primary: 'bg-ink text-paper hover:bg-accent hover:-translate-y-px',
+  secondary:
+    'border border-hairline text-ink hover:border-accent hover:text-accent',
 }
 
 export function Button({
@@ -34,7 +35,7 @@ export function Button({
   rel,
 }: ButtonProps) {
   const classes = cn(
-    'inline-flex items-center justify-center gap-2 rounded-chip px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50',
+    'inline-flex items-center justify-center gap-2 rounded-chip px-6 py-3.5 text-[15px] font-semibold no-underline transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50',
     variantStyles[variant],
     className,
   )

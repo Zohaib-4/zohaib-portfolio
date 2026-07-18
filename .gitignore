@@ -38,3 +38,6 @@ docs/
 
 # --- Local scratch ---
 temp/
+
+# --- Superseded design (reference backup only) ---
+old-frontend/
