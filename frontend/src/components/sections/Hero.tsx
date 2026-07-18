@@ -65,6 +65,7 @@ export function Hero() {
                 </a>
                 <a
                   href={PROFILE.resume}
+                  download
                   className="border-b border-hairline text-dim no-underline pb-0.5 hover:border-accent hover:text-accent"
                 >
                   Resume

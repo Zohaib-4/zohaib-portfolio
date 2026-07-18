@@ -155,6 +155,7 @@ export function Contact() {
             </a>
             <a
               href={PROFILE.resume}
+              download
               className="border-b border-hairline pb-0.5 text-dim no-underline hover:border-accent hover:text-accent"
             >
               Resume
