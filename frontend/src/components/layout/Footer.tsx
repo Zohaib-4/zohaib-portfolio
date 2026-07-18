@@ -1,52 +1,38 @@
-import { ArrowUp, Mail } from 'lucide-react'
-import type { Profile } from '../../types'
-import { SOCIAL_ICONS } from '../../lib/socialIcons'
+import { PROFILE } from '../../content'
 import { Container } from './Container'
 
 const YEAR = new Date().getFullYear()
 
-interface FooterProps {
-  profile: Profile
-}
-
-export function Footer({ profile }: FooterProps) {
+export function Footer() {
   return (
-    <footer className="border-t border-border py-8">
-      <Container className="flex flex-col items-center gap-6 text-sm text-text-muted md:flex-row md:justify-between">
-        <p>
-          © {YEAR} {profile.name} · Built with React + FastAPI
-        </p>
-        <div className="flex items-center gap-4">
-          {profile.socials.map((social) => {
-            const Icon = SOCIAL_ICONS[social.icon]
-            return (
-              <a
-                key={social.label}
-                href={social.url}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-text"
-              >
-                {Icon && <Icon className="h-4 w-4" aria-hidden="true" />}
-                {social.label}
-              </a>
-            )
-          })}
-          <a
-            href={`mailto:${profile.email}`}
-            className="inline-flex items-center gap-1.5 hover:text-text"
-          >
-            <Mail className="h-4 w-4" aria-hidden="true" />
-            Email
-          </a>
-          <a
-            href="#zohaib"
-            className="inline-flex items-center gap-1.5 hover:text-text"
-          >
-            <ArrowUp className="h-4 w-4" aria-hidden="true" />
-            Back to top
-          </a>
-        </div>
+    <footer className="border-t border-hairline">
+      <Container className="flex flex-wrap gap-6 py-6 text-[13px] text-dim">
+        <span>
+          © {YEAR} {PROFILE.name}
+        </span>
+        <span className="flex-1" />
+        <a
+          href={PROFILE.github}
+          target="_blank"
+          rel="noreferrer"
+          className="text-dim no-underline hover:text-accent"
+        >
+          GitHub
+        </a>
+        <a
+          href={PROFILE.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          className="text-dim no-underline hover:text-accent"
+        >
+          LinkedIn
+        </a>
+        <a
+          href={`mailto:${PROFILE.email}`}
+          className="text-dim no-underline hover:text-accent"
+        >
+          Email
+        </a>
       </Container>
     </footer>
   )
